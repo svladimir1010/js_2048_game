@@ -20,12 +20,18 @@ function render() {
 
   board.forEach((row, r) => {
     row.forEach((col, c) => {
-      // if (board[r][c] === 0) {
-      //  tab.rows[r].cells[c].textContent = '';
-      // } else {
-      //  tab.rows[r].cells[c].textContent = board[r][c];
-      // }
-      tab.rows[r].cells[c].textContent = col === 0 ? '' : col;
+      const cell = tab.rows[r].cells[c];
+
+      // 1. Сбрасываем классы ячейки к базовому, чтобы убрать предыдущие цвета
+      cell.className = 'field-cell';
+
+      // 2. Если в ячейке есть число — ставим текст и класс цвета
+      if (col === 0) {
+        cell.textContent = '';
+      } else {
+        cell.textContent = col;
+        cell.classList.add(`field-cell--${col}`);
+      }
     });
   });
 
